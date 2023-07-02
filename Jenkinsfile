@@ -15,7 +15,8 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'podman run -d --name podmanJenks1 -p 8097:80 ad303d7f80f9'
+        sh '''su - jenkins;
+podman run -d --name podmanJenks1 -p 8097:80 ad303d7f80f9'''
       }
     }
 
