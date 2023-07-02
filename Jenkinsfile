@@ -13,10 +13,13 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('docker login') {
+      environment {
+        Dockerhub_User = 'Yusuf21'
+        Dockerhub_Pw = 'BunoDocker21.'
+      }
       steps {
-        sh '''su - jenkins;
-podman run -d --name podmanJenks1 -p 8097:80 ad303d7f80f9'''
+        sh 'docker login -u $Dockerhub_User -p $Dockerhub_Pw'
       }
     }
 
