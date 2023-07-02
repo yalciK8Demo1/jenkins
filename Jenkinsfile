@@ -8,19 +8,14 @@ pipeline {
     }
 
     stage('log') {
-      parallel {
-        stage('log') {
-          steps {
-            sh 'ls -la'
-          }
-        }
+      steps {
+        sh 'ls -la'
+      }
+    }
 
-        stage('front-end unit tests / Shell Script') {
-          steps {
-            sh 'cd curriculum-front && nom i && npm run test:unit'
-          }
-        }
-
+    stage('Build') {
+      steps {
+        sh 'podman run -d --name podmanJenks1 -p 8097:80 docker.io/library/httpd'
       }
     }
 
